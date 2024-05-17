@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import {getSlidingWindow} from '../constants'
 
 function SlidingWindow() {
   const [countdown, setCountdown] = useState(0);
@@ -20,14 +21,13 @@ function SlidingWindow() {
 
   const handleHitApi = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/sliding-window/rate-limiter');
+      const response = await axios.get(getSlidingWindow);
       setApiResponse(response.data); 
       if (response.data.error) {
         setCountdown(10); // Start countdown if there's an error
         setTotalHit(0);
       }else {
         setTotalHit(totalHit+1);
-        console.log(totalHit)
       }
     } catch (error) {
       console.error('Error hitting API:', error);

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import {getLeakyBucket} from '../constants'
 
 function LeakyBucket() {
   const [countdown, setCountdown] = useState(0);
@@ -20,10 +21,10 @@ function LeakyBucket() {
 
   const handleHitApi = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/sliding-window/rate-limiter');
+      const response = await axios.get(getLeakyBucket);
       setApiResponse(response.data); 
       if (response.data.error) {
-        setCountdown(10); // Start countdown if there's an error
+        setCountdown(10);
         setTotalHit(0);
       }else {
         setTotalHit(totalHit+1);

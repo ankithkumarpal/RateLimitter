@@ -50,7 +50,6 @@ const checkTokens = async (req, res, next) => {
             res.status(200).json({ message : 'Rate limit exceeded' , timetowait :  process.env.WINDOW_SIZE , error : true});
         }
     } catch (error) {
-        console.error('Error checking tokens:', error);
         res.status(500).json({ message : 'Internal server error' , timetowait :  process.env.WINDOW_SIZE , error : true});
     }
 };

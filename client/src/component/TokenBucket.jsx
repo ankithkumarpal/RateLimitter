@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import {getTokenBucket} from '../constants'
 
 function TokenBucket() {
   const [countdown, setCountdown] = useState(0);
@@ -20,9 +21,8 @@ function TokenBucket() {
 
   const handleHitApi = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/token-bucket/rate-limiter');
+      const response = await axios.get(getTokenBucket);
       setApiResponse(response.data); 
-      console.log(response.data)
       if (response.data.error) {
         setCountdown(10);
         setTotalHit(0);

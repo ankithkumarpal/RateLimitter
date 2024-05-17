@@ -38,7 +38,6 @@ const tokenBucketMiddleware = async (req, res, next) => {
             res.status(200).json({ message : 'Rate limit exceeded' , timetowait :  process.env.WINDOW_SIZE , error : true});
         }
     } catch (error) {
-        console.error('Error in token bucket middleware:', error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 };
