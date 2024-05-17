@@ -28,7 +28,6 @@ function LeakyBucket() {
         setTotalHit(0);
       }else {
         setTotalHit(totalHit+1);
-        console.log(totalHit)
       }
     } catch (error) {
       console.error('Error hitting API:', error);
